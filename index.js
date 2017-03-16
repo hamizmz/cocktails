@@ -1,44 +1,57 @@
 // We have our cocktails... let's work with 'em!
 
-function compare(a, b) {
-	return a === b;
-};
-
-function sliding_compare(a, b) {
-	if (a.length === 0)
-		return false;
-	if (compare(a.slice(0, b.length), b))
-		return true;
-	return sliding_compare(a.slice(1), b);
-};
-
-function match(source, query) {
-	console.log(source, query);
-	return sliding_compare(source.slice(0), query);
-};
-
-function search(query) {
-	// What we're going to do is filter the cocktail list...
-	return cocktails.filter((cocktail) => {
-		return match(cocktail.name.toLowerCase(), query.trim().toLowerCase());
-	});
-};
-
-function cocktail_search(input, output) {
-	input.addEventListener('keyup', (e) => {
-		var text = input.value;
-		if (text.length >= 3) {
-			output.innerHTML = search(text).map((cocktail) => {
-				return cocktail.name;
-			}).join("<br />");
-		} else {
-			output.innerHTML = "";
-		}
-	}, false);
-};
-
 var _search = document.getElementById("cocktail_search");
 var _input = _search.getElementsByTagName("input")[0];
 var _output = _search.getElementsByTagName("div")[0];
 
-cocktail_search(_input, _output);
+_input.addEventListener('keyup', (e) => {
+	var text = e.target.value;
+	_output.innerHTML = ""; // TODO: change this to calculate a difference
+	if (text.length >= 3) {
+		// TODO: change this to calculate a difference.
+		var gui = search(text).map(render_cocktail);
+		gui.forEach((cocktail) => {
+			_output.appendChild(cocktail);
+		});
+	}
+}, false);
+
+function make(el, args) {
+	var el = document.createElement(el);
+	return Object.assign(el, args);
+};
+
+function render_header(title) {
+	return make("h3", {
+		innerHTML: title
+	});
+};
+
+function render_recipe(list) {
+	var ul = make("ul");
+	list.map((ingredient) => {
+		return make("li", {
+			innerHTML: ingredient.toString()
+		});
+	}).forEach((list_item) => {
+		ul.appendChild(list_item);
+	});
+	return ul;
+};
+
+function render_misc(cocktail) {
+	return make("span", {
+		innerHTML: ""
+	});
+};
+
+function render_cocktail(cocktail) {
+	var el = make("div", {
+		className: "cocktail",
+		id: cocktail.name
+	});
+	el.appendChild(render_header(cocktail.name));
+	el.appendChild(render_recipe(cocktail.recipe));
+	el.appendChild(render_misc(cocktail));
+	return el;
+};
