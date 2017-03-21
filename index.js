@@ -1,7 +1,7 @@
 // We have our cocktails... let's work with 'em!
 
 var _search = document.getElementById("cocktail_search");
-var _input = _search.getElementsByTagName("span")[0];
+var _input = _search.getElementsByClassName("InputBox")[0];
 var _output = _search.getElementsByClassName("Results")[0];
 
 _input.innerHTML = _input.getAttribute("placeholder");
@@ -9,6 +9,7 @@ _input.innerHTML = _input.getAttribute("placeholder");
 _input.addEventListener('focus', function onfocus(e) {
 	e.target.innerHTML = "";
 	e.target.removeEventListener('focus', onfocus);
+	e.target.focus();
 });
 
 _input.addEventListener('keyup', (e) => {
