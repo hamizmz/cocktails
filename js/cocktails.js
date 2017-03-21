@@ -114,13 +114,14 @@ cocktails = (function() {
 		});
 	};
 
-	function cocktail(name, recipe, glass) {
+	function cocktail(name, recipe, glass, notes) {
 		var o = {
 			name: name,
 			recipe: recipe.map((duo) => {
 				return ingredient(duo[0], duo[1]);
 			}),
 			glass: glass,
+			notes: notes,
 			toString: () => {
 				return name;
 			}
@@ -136,7 +137,9 @@ cocktails = (function() {
 				[CITRUS.LEMON, 1],
 				[GOMME.REGULAR, 0.8],
 				[FRUIT.EGG, 1]
-			]
+			],
+			GLASS.SMALL,
+			"Shake once with no ice (wrap in a towel). Shake again with ice."
 		);
 	};
 
@@ -147,7 +150,8 @@ cocktails = (function() {
 				[spirit, 2],
 				[FRUIT.ORANGE_PEEL, 0.5]
 			],
-			GLASS.OLD_FASHIONED
+			GLASS.OLD_FASHIONED,
+			"Takes 5 to 10 minutes to make."
 		);
 	};
 
@@ -317,7 +321,8 @@ cocktails = (function() {
 				[CITRUS.LIME, 1],
 				[JUICE.PINEAPPLE, 2],
 			],
-			GLASS.PINT
+			GLASS.PINT,
+			"Garnish with half a passionfruit with its insides removed and replaced with 10ml of Wray &amp; Nephew."
 		),
 		BRAMBLE: cocktail(
 			"Bramble",
@@ -327,7 +332,8 @@ cocktails = (function() {
 				[GOMME.REGULAR, 0.8],
 				[LIQUEUR.BLACKBERRY.CREME_DE_MURE, 0.5]
 			],
-			GLASS.SMALL
+			GLASS.SMALL,
+			"Build over crushed ice."
 		),
 		OLD_SALTY: cocktail(
 			"Old Salty",
@@ -337,7 +343,8 @@ cocktails = (function() {
 				[DAIRY.MILK, 0.5],
 				[DAIRY.CREAM, 0.5]
 			],
-			GLASS.SMALL
+			GLASS.SMALL,
+			"Add Khalua to glass with cubed ice. Shake only the dairy and the vodka."
 		),
 		PORNSTAR: cocktail(
 			"Pornstar Martini",
@@ -348,7 +355,8 @@ cocktails = (function() {
 				[GOMME.VANILLA, 0.6],
 				[PUREE.PASSIONFRUIT, 0.5]
 			],
-			GLASS.COUPE
+			GLASS.COUPE,
+			"Garnish with half a passionfruit. Add a shot of prosecco on the side."
 		),
 		HO_CHIN: cocktail(
 			"Ho Chin",
@@ -359,7 +367,8 @@ cocktails = (function() {
 				[JUICE.APPLE, 1],
 				[FRUIT.MINT, 8]
 			],
-			GLASS.SLING
+			GLASS.SLING,
+			"Blend with a scoop of ice, bro."
 		),
 		MOJITO: cocktail(
 			"Mojito",
@@ -369,7 +378,8 @@ cocktails = (function() {
 				[GOMME.REGULAR, 0.8],
 				[FRUIT.MINT, 6]
 			],
-			GLASS.TALL
+			GLASS.TALL,
+			"Build over crushed ice."
 		),
 		ESPRESSO_MARTINI: cocktail(
 			"Espresso Martini",
@@ -389,7 +399,8 @@ cocktails = (function() {
 				[JUICE.APPLE, 1],
 				[GOMME.ROSE, 0.8]
 			],
-			GLASS.COUPE
+			GLASS.COUPE,
+			"Garnish with edible flowers, yo."
 		),
 		FRENCH_MARTINI: cocktail(
 			"French Martini",
@@ -418,7 +429,8 @@ cocktails = (function() {
 				[CITRUS.LEMON, 1],
 				[GOMME.HONEY, 0.8]
 			],
-			GLASS.COUPE
+			GLASS.COUPE,
+			"Garnish with edible flowers."
 		),
 		BLUSHING_DRAGON: cocktail(
 			"Blushing Dragon",
@@ -431,7 +443,8 @@ cocktails = (function() {
 				[CITRUS.LEMON, 1],
 				[PUREE.MANGO, 1]
 			],
-			GLASS.TALL
+			GLASS.TALL,
+			"Muddle the fruit in a boston first. After shaking, pour over crushed ice."
 		),
 		SILK_ROAD_SOUR: cocktail(
 			"Silk Road Sour",
@@ -451,7 +464,8 @@ cocktails = (function() {
 				[FRUIT.MINT, 6],
 				[FRUIT.CUCUMBER, 3]
 			],
-			GLASS.COUPE
+			GLASS.COUPE,
+			"Garnish with some cucumber slices."
 		),
 		// RUMTING: cocktail(
 		// 	"Rumting",

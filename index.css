@@ -1,0 +1,53 @@
+* {
+	outline:none;
+}
+
+body {
+	background-color:white;
+	color:#444;
+	font-size:16pt;
+	padding:10pt 0;
+	margin:0;
+	font-family:monospace;
+}
+
+span[contenteditable] {
+	display:block;
+	color:#343434;
+	padding:20pt 10pt 10pt;
+	border-bottom:2px solid #343434;
+	margin:10pt;
+	height:16pt;
+}
+
+.Query {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	background-color:white;
+}
+
+.Results {
+	padding:50pt 30pt 30pt;
+}
+
+.Cocktail {
+	margin:30pt 0;
+	line-height:1.25em;
+}
+
+h1, h2, h3 {
+	color:#343434;
+	margin:0 0 16pt;
+}
+
+ul {
+	margin:20pt 0 20pt;
+	padding:0 0 0 50pt;
+}
+
+.Cocktail p {
+	margin:20pt 0;
+	padding:0 0 0 20pt;
+}

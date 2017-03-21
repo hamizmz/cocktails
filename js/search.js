@@ -12,7 +12,6 @@ search = (function() {
 	};
 
 	function match(source, query) {
-		console.log(source, query);
 		return sliding_compare(source.slice(0), query);
 	};
 

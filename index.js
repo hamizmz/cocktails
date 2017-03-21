@@ -1,11 +1,18 @@
 // We have our cocktails... let's work with 'em!
 
 var _search = document.getElementById("cocktail_search");
-var _input = _search.getElementsByTagName("input")[0];
-var _output = _search.getElementsByTagName("div")[0];
+var _input = _search.getElementsByTagName("span")[0];
+var _output = _search.getElementsByClassName("Results")[0];
+
+_input.innerHTML = _input.getAttribute("placeholder");
+
+_input.addEventListener('focus', function onfocus(e) {
+	e.target.innerHTML = "";
+	e.target.removeEventListener('focus', onfocus);
+});
 
 _input.addEventListener('keyup', (e) => {
-	var text = e.target.value;
+	var text = e.target.innerHTML;
 	_output.innerHTML = ""; // TODO: change this to calculate a difference
 	if (text.length >= 3) {
 		// TODO: change this to calculate a difference.
@@ -40,14 +47,16 @@ function render_recipe(list) {
 };
 
 function render_misc(cocktail) {
-	return make("span", {
-		innerHTML: ""
+	return make("p", {
+		innerHTML: "Served in a " +
+			cocktail.glass + "<br />" +
+			(cocktail.notes || "")
 	});
 };
 
 function render_cocktail(cocktail) {
 	var el = make("div", {
-		className: "cocktail",
+		className: "Cocktail",
 		id: cocktail.name
 	});
 	el.appendChild(render_header(cocktail.name));
