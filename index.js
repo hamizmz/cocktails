@@ -9,7 +9,9 @@ _input.innerHTML = _input.getAttribute("placeholder");
 _input.addEventListener('focus', function onfocus(e) {
 	e.target.innerHTML = "";
 	e.target.removeEventListener('focus', onfocus);
-	e.target.focus();
+	setTimeout(() => {
+		_input.focus();
+	}, 500);
 });
 
 _input.addEventListener('keyup', (e) => {
