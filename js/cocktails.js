@@ -88,8 +88,8 @@ cocktails = (function() {
 		return item(name, "juice", kind);
 	};
 
-	function dairy(name) {
-		return item(name, "dairy", name);
+	function dairy(name, kind) {
+		return item(name, "dairy", kind || name);
 	};
 
 	function coffee(name) {
@@ -102,6 +102,10 @@ cocktails = (function() {
 
 	function fruit(name, kind) {
 		return item(name, "fruit", kind || name);
+	};
+	
+	function herb(name, kind) {
+		return item(name, "herb", kind);
 	};
 
 	function ingredient(item, measure) {
@@ -136,7 +140,7 @@ cocktails = (function() {
 				[spirit, 2],
 				[CITRUS.LEMON, 1],
 				[GOMME.REGULAR, 0.8],
-				[FRUIT.EGG, 1]
+				[DAIRY.EGG, 1]
 			],
 			GLASS.SMALL,
 			"Shake once with no ice (wrap in a towel). Shake again with ice."
@@ -233,7 +237,8 @@ cocktails = (function() {
 		ELDERFLOWER: gomme("Elderflower", "elderflower"),
 		ORGEAT: gomme("Syrop Orgeat", "orgeat"),
 		HONEY: gomme("Honey", "honey"),
-		SPICED: gomme("Spiced Gomme", "spicy")
+		SPICED: gomme("Spiced Gomme", "spicy"),
+		AGAVE: gomme("Agave Nectar", "agave")
 	};
 
 	var CITRUS = {
@@ -250,7 +255,8 @@ cocktails = (function() {
 
 	var DAIRY = {
 		MILK: dairy("milk"),
-		CREAM: dairy("creme")
+		CREAM: dairy("creme"),
+		EGG: dairy("egg white", "egg")
 	};
 
 	var COFFEE = {
@@ -265,18 +271,21 @@ cocktails = (function() {
 		PEACH: puree("peach"),
 		MANGO: puree("mango")
 	};
-
-
+	
 	var FRUIT = {
 		RASPBERRY: fruit("raspberry"),
 		BLUEBERRY: fruit("blueberry"),
 		BLACKBERRY: fruit("blackberry"),
 		WATERMELON: fruit("watermelon"),
 		CUCUMBER: fruit("cucumber"),
-		ORANGE_PEEL: fruit("orange peel", "zest"),
-		MINT: fruit("mint", "leaves"),
-		BASIL: fruit("basil", "leaves"),
-		EGG: fruit("egg white", "egg")
+		ORANGE_PEEL: fruit("orange peel", "zest")
+	};
+	
+	var HERB = {
+		MINT: herb("mint leaves", "mint"),
+		BASIL: herb("basil leaves", "basil"),
+		MATCHA: herb("matcha powder", "matcha"),
+		WASABI: herb("wasabi")
 	};
 
 	var GLASS = {
@@ -365,7 +374,7 @@ cocktails = (function() {
 				[CITRUS.LIME, 1],
 				[GOMME.WATERMELON, 1],
 				[JUICE.APPLE, 1],
-				[FRUIT.MINT, 8]
+				[HERB.MINT, 8]
 			],
 			GLASS.SLING,
 			"Blend with a scoop of ice, bro."
@@ -376,7 +385,7 @@ cocktails = (function() {
 				[RUM.BACARDI, 2],
 				[CITRUS.LIME, 1],
 				[GOMME.REGULAR, 0.8],
-				[FRUIT.MINT, 6]
+				[HERB.MINT, 6]
 			],
 			GLASS.TALL,
 			"Build over crushed ice."
@@ -461,22 +470,22 @@ cocktails = (function() {
 				[RUM.BACARDI, 2],
 				[CITRUS.LIME, 1],
 				[GOMME.REGULAR, 0.8],
-				[FRUIT.MINT, 6],
+				[HERB.MINT, 6],
 				[FRUIT.CUCUMBER, 3]
 			],
 			GLASS.COUPE,
 			"Garnish with some cucumber slices."
 		),
-		// RUMTING: cocktail(
-		// 	"Rumting",
-		// 	[
-		// 		[RUM.BRUGAL, 1.5],
-		// 		[LIQUEUR.PASSIONFRUIT.PASSOA, 0.5],
-		// 		[CITRUS.LIME, 1],
-		// 		[AGAVE?]
-		// 	],
-		// 	GLASS.SLING
-		// ),
+		RUMTING: cocktail(
+			"Rumting",
+			[
+				[RUM.BRUGAL, 1.5],
+				[LIQUEUR.PASSIONFRUIT.PASSOA, 0.5],
+				[CITRUS.LIME, 1],
+				[GOMME.AGAVE, 1]
+			],
+			GLASS.SLING
+		),
 		ORCHID_BLOSSOM: cocktail(
 			"Orchid Blossom",
 			[
@@ -488,19 +497,29 @@ cocktails = (function() {
 			],
 			GLASS.SLING
 		),
-		// SAIGON_SLING: cocktail(
-		// 	"Saigon Sling",
-		// 	[
-		// 		[GIN.TANQUERAY, 1.5],
-		// 		[LIQUEUR.ORANGE.TRIPLE_SEC, 0.5],
-		// 		[CITRUS.LEMON, 1],
-		// 		[GOMME.REGULAR, 0.8],
-		// 		[JUICE.ORANGE, 1],
-		// 		[BASIL LEAVES?]
-		// 		[MATCHA?]
-		// 	],
-		// 	GLASS.SLING
-		// ),
+		SAIGON_SLING: cocktail(
+			"Saigon Sling",
+			[
+				[GIN.TANQUERAY, 1.5],
+				[LIQUEUR.ORANGE.TRIPLE_SEC, 0.5],
+				[CITRUS.LEMON, 1],
+				[GOMME.REGULAR, 0.8],
+				[JUICE.ORANGE, 1],
+				[HERB.BASIL, 2],
+				[HERB.MATCHA, 1]
+			],
+			GLASS.SLING
+		),
+		RASPBERRY_MULE: cocktail(
+			"Raspberry Mule",
+			[
+				[VODKA.SMIRNOFF, 1],
+				[LIQUEUR.RASPBERRY.CHAMBORD, 1],
+				[CITRUS.LIME, 1],
+				[]
+			],
+			GLASS.COUPE
+		),
 		SOUR: {
 			WHISKY: sour_cocktail("Whisky Sour", WHISKY.JW_RED),
 			BOURBON: sour_cocktail("Bourbon Sour", WHISKY.BULLEIT),
@@ -526,13 +545,13 @@ cocktails = (function() {
 		COCKTAILS.SILK_ROAD_SOUR,
 		COCKTAILS.MT_FUJI,
 		COCKTAILS.HO_CHIN,
-		// COCKTAILS.RUMTING,
+		COCKTAILS.RUMTING,
 		COCKTAILS.ORCHID_BLOSSOM,
 		COCKTAILS.SOUR.WHISKY,
 		COCKTAILS.SOUR.BOURBON,
 		COCKTAILS.SOUR.GIN,
 		COCKTAILS.SOUR.AMARETTO,
-		// COCKTAILS.SAIGON_SLING,
+		COCKTAILS.SAIGON_SLING,
 		// COCKTAILS.MODERN_MAN
 	];
 })();

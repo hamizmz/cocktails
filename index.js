@@ -4,14 +4,22 @@ var _search = document.getElementById("cocktail_search");
 var _input = _search.getElementsByClassName("InputBox")[0];
 var _output = _search.getElementsByClassName("Results")[0];
 
+_input.blur();
 _input.innerHTML = _input.getAttribute("placeholder");
+_input.setAttribute("active", "false");
 
-_input.addEventListener('focus', function onfocus(e) {
+_input.addEventListener('focus', (e) => {
+	if (e.target.innerHTML !== e.target.getAttribute("placeholder"))
+		return;
 	e.target.innerHTML = "";
-	e.target.removeEventListener('focus', onfocus);
-	setTimeout(() => {
-		_input.focus();
-	}, 500);
+	e.target.setAttribute("active", "true");
+});
+
+_input.addEventListener('blur', (e) => {
+	if (e.target.innerHTML.trim() === "") {
+		e.target.innerHTML = e.target.getAttribute("placeholder");
+		e.target.setAttribute("active", "false");
+	}
 });
 
 _input.addEventListener('keyup', (e) => {
@@ -25,6 +33,27 @@ _input.addEventListener('keyup', (e) => {
 		});
 	}
 }, false);
+
+// (function(target, interval) {
+// 	var placeholder = target.getAttribute("placeholder");
+// 	var counter = 0;
+// 	setInterval((e) => {
+// 		if (target.getAttribute("active") == "false") {
+// 			let output = placeholder;
+// 			for (let i = counter; i > 0; i--)
+// 				output += ".";
+// 			target.innerHTML = output;
+// 			counter = cycle(0, 4, counter, 1);
+// 		}
+// 	}, interval);
+// })(_input, 650);
+
+function cycle(start, end, current, increment) {
+	current += increment;
+	if (current === end)
+		return start;
+	return current;
+};
 
 function make(el, args) {
 	var el = document.createElement(el);
