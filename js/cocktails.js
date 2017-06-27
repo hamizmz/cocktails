@@ -164,7 +164,8 @@ cocktails = (function() {
 	var RUM = {
 		BACARDI: rum("Bacardi"),
 		BACARDI_GOLD: rum("Bacardi Gold"),
-		BRUGAL: rum("Brugal")
+		BRUGAL: rum("Brugal"),
+		HAVANA_7: rum("Havana 7 Year")
 	};
 
 	var TEQUILA = {
@@ -176,7 +177,8 @@ cocktails = (function() {
 		KETEL_ONE: vodka("Ketel One"),
 		CITRON: vodka("Ketel One Citron"),
 		CARIEL: vodka("Cariel Vanilla"),
-		CIROC_MANGO: vodka("Ciroc Mango")
+		CIROC_MANGO: vodka("Ciroc Mango"),
+		LUKSUSOWA: vodka("Luksusowa")
 	};
 
 	var WHISKY = {
@@ -187,6 +189,7 @@ cocktails = (function() {
 
 	var GIN = {
 		TANQUERAY: gin("Tanqueray"),
+		HENDRICKS: gin("Hendrick's")
 	};
 
 	var LIQUEUR = {
@@ -245,12 +248,18 @@ cocktails = (function() {
 		LEMON: citrus("lemon juice", "lemon"),
 		LIME: citrus("lime juice", "lime")
 	};
+	
+	var SAUCE = {
+		WORCESTER: sauce(""),
+		TOBASCO: sauce("")
+	};
 
 	var JUICE = {
 		APPLE: juice("apple juice", "apple"),
 		PINEAPPLE: juice("pineapple juice", "pineapple"),
 		ORANGE: juice("orange juice", "orange"),
-		CRANBERRY: juice("cranberry juice", "cranberry")
+		CRANBERRY: juice("cranberry juice", "cranberry"),
+		TOMATO: juice("tomato juice", "tomato")
 	};
 
 	var DAIRY = {
@@ -278,7 +287,9 @@ cocktails = (function() {
 		BLACKBERRY: fruit("blackberry"),
 		WATERMELON: fruit("watermelon"),
 		CUCUMBER: fruit("cucumber"),
-		ORANGE_PEEL: fruit("orange peel", "zest")
+		ORANGE_PEEL: fruit("orange peel", "zest"),
+		LIME: fruit("lime"),
+		ORANGE: fruit("orange"),
 	};
 	
 	var HERB = {
@@ -286,6 +297,11 @@ cocktails = (function() {
 		BASIL: herb("basil leaves", "basil"),
 		MATCHA: herb("matcha powder", "matcha"),
 		WASABI: herb("wasabi")
+	};
+	
+	var SEASONING = {
+		SALT: seasoning(""),
+		PEPPER:  seasoning(""),
 	};
 
 	var GLASS = {
@@ -525,6 +541,18 @@ cocktails = (function() {
 			BOURBON: sour_cocktail("Bourbon Sour", WHISKY.BULLEIT),
 			GIN: sour_cocktail("Gin Sour", GIN.TANQUERAY),
 			AMARETTO: sour_cocktail("Amaretto Sour", LIQUEUR.ALMOND.AMARETTO),
+		},
+		CUBA_LIBRE: {
+		},
+		CAIPIROSKA: {
+		},
+		BLOODY_MARY: {
+		},
+		TREACLE: {
+		},
+		COLLINS: {
+		},
+		IRN_BRU_MOJITO: {
 		}
 	};
 
