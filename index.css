@@ -2,6 +2,10 @@
 	outline:none;
 }
 
+*[active=true] {
+	color:black;
+}
+
 body {
 	background-color:white;
 	color:#444;
